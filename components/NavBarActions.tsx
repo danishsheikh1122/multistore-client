@@ -3,19 +3,27 @@ import React, { useEffect, useState } from "react";
 import Button from "./ui/Button";
 import { ShoppingBag } from "lucide-react";
 import { tree } from "next/dist/build/templates/app-page";
+import useCartModal from "@/hooks/use-cart-modal copy";
+import { useRouter } from "next/navigation";
 
 const NavBarActions = () => {
-  //preventing hydration errors by below trick 
+  //preventing hydration errors by below trick
   const [isMounted, setIsMounted] = useState(false);
   useEffect(() => {
     setIsMounted(true);
   }, []);
-  if(!isMounted) return null
+
+  const cart = useCartModal();
+  const router=useRouter()
+
+  if (!isMounted) return null;
   return (
     <div className="ml-auto flex items-center gap-x-4">
-      <Button className="bg-black px-4 py-2 flex items-center rounded-full">
+      <Button className="bg-black px-4 py-2 flex items-center rounded-full" onClick={()=>router.push('/cart')}>
         <ShoppingBag size={20} color="white"></ShoppingBag>{" "}
-        <span className="ml-2 text-sm font-medium text-white">0</span>
+        <span className="ml-2 text-sm font-medium text-white">
+          {cart.items.length}
+        </span>
       </Button>
     </div>
   );

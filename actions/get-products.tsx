@@ -18,7 +18,8 @@ const getProducts = async (query: Query): Promise<Product[]> => {
       sizeId: query.sizeId,
     },
   });
-  const res = await fetch(URL);
+  // console.log(url)
+  const res = await fetch(url);
   return res.json();
 };
 export default getProducts;
