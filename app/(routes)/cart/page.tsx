@@ -10,8 +10,10 @@ const CartPage = () => {
   useEffect(() => {
     setIsMounted(true);
   }, []);
- 
   const cart = useCartModal();
+
+  if (!isMounted) return null;
+
   return (
     <div className="bg-white">
       <ContainerHomePage>
