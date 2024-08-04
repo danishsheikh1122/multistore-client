@@ -11,7 +11,7 @@ export const revalidate = 0;
 const HomePage = async () => {
   const billboards = await getBillboards(
     "070cf4d3-f1f4-4bac-a558-61f75ffdbe8a"
-  );
+  ); //place the primary key of the billboard in this function
   const products = await getProducts({ isFeatured: true });
   return (
     <ContainerHomePage>
